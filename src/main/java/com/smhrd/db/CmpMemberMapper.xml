@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.smhrd.db.CmpMemberMapper">
+
+	<insert id="cmpInsert" parameterType="cmpVO">
+		insert into cmp_info values(#{cmp_id}, #{cmp_pw}, #{cmp_name}, #{business_num}, #{area})
+	</insert>
+	<select id="cmpSelect" parameterType="cmpVO" resultType="cmpVO">
+		select * from cmp_info where cmp_id=#{cmp_id} and cmp_pw=#{cmp_pw}
+	</select>
+
+</mapper>

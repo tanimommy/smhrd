@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.smhrd.db.resumeMapper">
+
+	<select id="resume_Print" parameterType="BigDecimal" resultType="resumeVO">
+		select * from t_resume where resume_num=#{resume_num}
+	</select>
+	
+	<select id="selectListToEmp" resultType="resumeVO">
+		select * from T_RESUME WHERE on_off = 'on' order by resume_num desc
+	</select>
+	
+	<select id="select_userResumes" resultType="resumeVO">
+		select * from t_resume where user_id=#{id} order by resume_num desc
+	</select>
+	
+	<select id="selectResumeNum" parameterType="String" resultType="resumeVO">
+		SELECT * FROM t_resume WHERE user_id = #{user_id} AND cre_date = (
+      		SELECT MAX(cre_date)
+      		FROM t_resume
+      		WHERE user_id = #{user_id}
+  		)
+	</select>
+		
+	<delete id="resumeDelete">
+		delete from t_resume where resume_num = #{deleteIndex}
+	</delete>
+	
+	<update id="openUpdate" parameterType="resumeVO">
+		update t_resume set on_off = 'on' where resume_num=#{resume_num} and user_id=#{user_id}
+	</update>
+	
+	<update id="closeUpdate" parameterType="BigDecimal">
+		update t_resume set on_off = null where resume_num=#{resume_num}
+	</update>
+	
+	<update id="openUpdate2" parameterType="resumeVO">
+		update t_resume set on_off = null where user_id=#{user_id} and on_off = 'on'
+	</update>
+	
+	<delete id="deletePrint" parameterType="int">
+		delete from t_resume where resume_num= #{myInt}
+	</delete>
+	
+	<insert id="insertResume" parameterType="resumeVO">
+		insert into t_resume (user_id, resume_title, picture, user_name, date_birth,
+		gender, user_email, user_tel, user_tel2, address, school_division, school_name,
+		major, graduation_status, other_license, career_date, career, award, self_introduction,
+		file_name, url, hope_salary, hope_area, hope_area2, on_off)
+		values(#{user_id}, #{resume_title}, #{picture}, #{user_name}, #{date_birth},
+		#{gender}, #{user_email}, #{user_tel}, #{user_tel2}, #{address}, #{school_division}, #{school_name},
+		#{major}, #{graduation_status}, #{other_license}, #{career_date}, #{career}, #{award}, #{self_introduction},
+		#{file_name}, #{url}, #{hope_salary}, #{hope_area}, #{hope_area2}, #{on_off})
+	</insert>
+
+</mapper>

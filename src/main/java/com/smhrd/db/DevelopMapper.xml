@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.smhrd.db.DevelopMapper">
+
+	<select id="selectDevelopList" resultType="developVO">
+		SELECT LANGUAGES, FRAMEWORKS, OSS, LICENSES
+		FROM LANGUAGE_T A, FRAMEWORK_T B, OS_T C, LICENSE_T D
+		WHERE A.IDX = B.IDX
+		AND B.IDX = C.IDX
+		AND C.IDX = D.IDX	
+	</select>
+
+</mapper>

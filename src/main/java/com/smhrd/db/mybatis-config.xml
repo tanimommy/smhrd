@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+	<properties resource="com/smhrd/db/db.properties" />
+
+	<!-- 타입 알리야스 설정 -->
+	<typeAliases>
+		<typeAlias type="com.smhrd.model.userVO" alias="userVO" />
+		<typeAlias type="com.smhrd.model.cmpVO" alias="cmpVO" />
+		<typeAlias type="com.smhrd.model.developVO" alias="developVO" />
+		<typeAlias type="com.smhrd.model.resumeVO" alias="resumeVO" />
+		<typeAlias type="com.smhrd.model.LanguageVO" alias="LanguageVO" />
+		<typeAlias type="com.smhrd.model.FrameworkVO" alias="FrameworkVO" />
+		<typeAlias type="com.smhrd.model.OsVO" alias="OsVO" />
+		<typeAlias type="com.smhrd.model.LicenseVO" alias="LicenseVO" />
+		<typeAlias type="com.smhrd.model.jjimVO" alias="jjimVO" />
+		<typeAlias type="com.smhrd.model.cmpRecomVO" alias="cmpRecomVO" />
+	</typeAliases>
+
+	<environments default="development">
+		<environment id="development">
+			<transactionManager type="JDBC" />
+			<dataSource type="POOLED">
+				<property name="driver" value="${driver}" />
+				<property name="url" value="${url}" />
+				<property name="username" value="${username}" />
+				<property name="password" value="${password}" />
+			</dataSource>
+		</environment>
+	</environments>
+	<!-- sql문들 정의해주는 mapper.xml을 계속해서 만들건데 어디에 있는지 경로를 지정해주는 태그 -->
+	<mappers>
+		<mapper resource="com/smhrd/db/UserMemberMapper.xml" />
+		<mapper resource="com/smhrd/db/CmpMemberMapper.xml" />
+		<mapper resource="com/smhrd/db/DevelopMapper.xml" />
+		<mapper resource="com/smhrd/db/resumeMapper.xml" />
+		<mapper resource="com/smhrd/db/LanguageMapper.xml" />
+		<mapper resource="com/smhrd/db/JjimMapper.xml" />
+		<mapper resource="com/smhrd/db/cmpRecomMapper.xml" />
+	</mappers>
+
+</configuration>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.smhrd.db.JjimMapper">
+
+	<select id="selectjjim" resultType="jjimVO">
+		select * from jjim_list
+	</select>
+	
+	<insert id="insertjjim" parameterType="jjimVO">
+		INSERT INTO jjim_list values(jjim_num_sequence.nextval, #{cmp_id}, #{resume_num})
+	</insert>
+	
+	<delete id="deletejjim" parameterType="jjimVO">
+		delete from jjim_list where cmp_id = #{cmp_id} and resume_num = #{resume_num}
+	</delete>
+
+</mapper>

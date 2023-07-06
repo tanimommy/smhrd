@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.smhrd.db.LanguageMapper">
+
+	<select id="selectLanguage" resultType="LanguageVO">
+		select resume_num, language_name, language_level
+		from language_list
+	</select>
+	
+	<select id="selectFramework" resultType="FrameworkVO">
+		select resume_num, framework_name, framework_level
+		from framework_list
+	</select>
+	
+	<select id="selectOs" resultType="OsVO">
+		select resume_num, os_name, os_level
+		from os_list
+	</select>
+	
+	<select id="selectLicense" resultType="LicenseVO">
+		select resume_num, license_name
+		from license_list
+	</select>
+	
+	<select id="selectUserLanguage" resultType = "String">
+		select language_name from language_list a,(select * from t_resume where user_id = #{userId} order by resume_num asc) b where a.resume_num = b.resume_num
+	</select>
+	
+	<select id="selectUserFrameWork" resultType = "String">
+		select framework_name from framework_list a,(select * from t_resume where user_id = #{userId} order by resume_num asc) b where a.resume_num = b.resume_num
+	</select>
+	
+	<select id="selectUserOS" resultType = "String">
+		select os_name from os_list a,(select * from t_resume where user_id = #{userId} order by resume_num asc) b where a.resume_num = b.resume_num
+	</select>
+	
+	<insert id="insertLanguages" parameterType="LanguageVO">
+		insert into language_list (resume_num, language_name, language_level) values (#{resume_num}, #{language_name}, #{language_level})
+	</insert>
+	
+	<insert id="insertLicenses" parameterType="licenseVO">
+		insert into license_list (resume_num, license_name) values (#{resume_num}, #{license_name})
+	</insert>
+	
+	<insert id="insertFrameworks" parameterType="frameworkVO">
+		insert into framework_list (resume_num, framework_name, framework_level) values (#{resume_num}, #{framework_name}, #{framework_level})
+	</insert>
+	
+	<insert id="insertOss" parameterType="OsVO">
+		insert into os_list (resume_num, os_name, os_level) values (#{resume_num}, #{os_name}, #{os_level})
+	</insert>
+</mapper>
